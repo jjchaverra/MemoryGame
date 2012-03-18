@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="js/jquery-1.5.min.js"></script>
+		<script type="text/javascript" src="js/game2.js"></script>
+		<link rel=stylesheet href="css/memory_game.css" type="text/css">
+        <title>JQuery Memory Game</title>
+		
+        <script type="text/javascript">
+		$(document).ready(function() {
+			//@TODO add live
+			$(".reset").click(function() {
+				$('#boxcard').data('MemoryGame').resetGame();
+			});
+			
+			$('#boxcard').MemoryGame(
+				{
+					'maxClick': 6,
+					'onShowFinish': true,
+					'data':['img/01.jpg','img/02.jpg','img/03.jpg','img/04.jpg','img/05.jpg','img/06.jpg','img/07.jpg','img/08.jpg','img/09.jpg','img/10.jpg']
+				},
+				{
+					onSelect: function() {
+						var count = $('#boxcard').data('MemoryGame').settings.count;
+						$('#count').html(count);
+					},
+					onFinished: function() {
+						var happy = $('#boxcard').data('MemoryGame').settings.isHappy;
+						alert('Eres un pobre ' + happy);
+					}
+				}
+			);
+
+		});
+
+        </script>
+
+    </head>
+    <body>
+		
+		<div>
+			<div id="boxbutton">
+				<span class="link">
+					<span id="count">0</span> Click
+				</span>
+				<a href="javascript:" class="reset link">Reset</a>
+			</div>
+			<div id="boxcard" class='boxcard'></div>
+		</div>
+		
+        </div>
+		<br/>
+		<div id="boxcard2" class='boxcard'>			
+        </div>
+	
+    </body>
+</html>
